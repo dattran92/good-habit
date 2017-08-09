@@ -19,6 +19,8 @@ function Objective() {
     const objectives = this.fetch();
     delete objectives[key];
     localStorage.setItem(OBJECTIVE_KEY, JSON.stringify(objectives));
+    const objectActivity = `${ACTIVITY_KEY}_${key}`;
+    localStorage.removeItem(objectActivity);
   };
 }
 
@@ -51,7 +53,7 @@ function Activity() {
     const activities = this.getActivities(currentActivity.objectiveId);
     activities.push(currentActivity);
     localStorage.setItem(dbKey, JSON.stringify(activities));
-    localStorage.setItem(TEMP_ACTIVITY_KEY, null);
+    localStorage.removeItem(TEMP_ACTIVITY_KEY);
   };
 }
 

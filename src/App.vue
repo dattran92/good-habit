@@ -2,11 +2,11 @@
   <div id="app">
     <header>
       <img id="logo" src="./assets/logo.png">
-  		<nav>
+  		<nav id="mainNav">
   			<ul>
-  				<router-link to="/">Home</router-link>
-          <router-link to="/objective">Objective</router-link>
-          <router-link to="/chart">Chart</router-link>
+  				<router-link activeClass="active" to="/home">Home</router-link>
+          <router-link activeClass="active" to="/objective">Objective</router-link>
+          <router-link activeClass="active" to="/chart">Chart</router-link>
   			</ul>
   		</nav>
   	</header>
@@ -29,5 +29,11 @@ export default {
   #logo {
     width: 30px;
     height: 30px
+  }
+
+  #mainNav {
+    a.active {
+      font-weight: bold;
+    }
   }
 </style>
