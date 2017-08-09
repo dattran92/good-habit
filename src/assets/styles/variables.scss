@@ -5,8 +5,11 @@ $base-margin: 10px;
 $base-padding: 10px;
 
 $desktop-font-size: 14px;
-$mobile-font-size: 12px;
+$mobile-font-size: 13px;
 
+$primary-color: #26A69A;
+$grey-color: #BDBDBD;
+$white-color: #FFF;
 
 @mixin respond-to($media) {
   @if $media == desktop {

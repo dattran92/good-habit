@@ -14,7 +14,21 @@ strong, b {
 
 .box {
   display: flex;
-  box-sizing: border-box;
   margin: $base-margin;
   padding: $base-padding;
+}
+
+button {
+  border-radius: 5px;
+  border: 1px solid $grey-color;
+  background: $grey-color;
+  font-size: 14px;
+  padding: 8px 16px;
+  color: $white-color;
+  cursor: pointer;
+
+  &.primary {
+    background: $primary-color;
+    border-color: $primary-color;
+  }
 }

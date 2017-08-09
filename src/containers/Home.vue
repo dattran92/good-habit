@@ -5,6 +5,7 @@
     </header>
     <section>
       <button
+        class="primary"
         v-on:click="openCheckin"
         v-if="currentActivity == null">
         Check In

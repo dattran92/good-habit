@@ -1,6 +1,6 @@
 # good-habit
 
-> A SPA application written in VueJS
+> An SPA application written in VueJS
 
 Tracking Your activity for good habits
 

@@ -28,6 +28,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+@import "../assets/styles/variables.scss";
+
 .overlay {
   position: fixed;
   top: 0;
@@ -44,7 +46,6 @@ export default {
     padding: 20px;
     background: #fff;
     border-radius: 5px;
-    width: 30%;
     position: relative;
     transition: all 5s ease-in-out;
 
@@ -79,23 +80,19 @@ export default {
     footer {
       margin-top: 10px;
     }
-
-    button {
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      font-size: 14px;
-      padding: 8px 16px;
-
-      &.primary {
-        background: red;
-      }
-    }
   }
 }
 
-@media screen and (max-width: 700px){
+@include respond-to(desktop) {
   .popup {
-    width: 70%;
+    width: 30%;
   }
 }
+
+@include respond-to(mobile) {
+  .popup {
+    width: 80%;
+  }
+}
+
 </style>
