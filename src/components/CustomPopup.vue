@@ -47,7 +47,7 @@ export default {
     background: #fff;
     border-radius: 5px;
     position: relative;
-    transition: all 5s ease-in-out;
+    transition: all 0.5s ease-in-out;
 
     h2 {
       margin-top: 0;
@@ -60,7 +60,7 @@ export default {
     .close {
       position: absolute;
       top: 20px;
-      right: 30px;
+      right: 20px;
       transition: all 200ms;
       font-size: 30px;
       font-weight: bold;
