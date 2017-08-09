@@ -1,0 +1,7 @@
+@import "./variables.scss";
+
+@include respond-to(desktop) {
+  body {
+    font-size: $desktop-font-size;
+  }
+}

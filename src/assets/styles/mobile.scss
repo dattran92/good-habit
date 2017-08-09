@@ -1,0 +1,7 @@
+@import "./variables.scss";
+
+@include respond-to(mobile) {
+  body {
+    font-size: $mobile-font-size;
+  }
+}

@@ -1,0 +1,18 @@
+$desktop-width: 768px;
+$mobile-width: $desktop-width - 1;
+
+$base-margin: 10px;
+$base-padding: 10px;
+
+$desktop-font-size: 14px;
+$mobile-font-size: 12px;
+
+
+@mixin respond-to($media) {
+  @if $media == desktop {
+    @media only screen and (min-width: $desktop-width) { @content; }
+  }
+  @else {
+     @media only screen and (max-width: $mobile-width){ @content; }
+  }
+}
