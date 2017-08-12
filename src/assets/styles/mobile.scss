@@ -4,4 +4,8 @@
   body {
     font-size: $mobile-font-size;
   }
+
+  .container {
+    padding: 0 $base-padding / 2;
+  }
 }

@@ -15,7 +15,7 @@
         <span>You have started </span>
         <b>{{ objectives[currentActivity.objectiveId] }}</b>
         <span> since </span>
-        <b>{{ new Date(currentActivity.startTime) }}</b>
+        <b>{{ new Date(currentActivity.startTime) | displayTime }}</b>
       </div>
       <button
         v-on:click="checkout"
@@ -92,6 +92,11 @@ export default {
       const endTime = new Date().getTime();
       storage.activity.checkout(endTime);
       this.currentActivity = storage.activity.getCurrentActivity();
+    },
+  },
+  filters: {
+    displayTime(time) {
+      return `${time.getHours()}:${time.getMinutes()}`;
     },
   },
 };

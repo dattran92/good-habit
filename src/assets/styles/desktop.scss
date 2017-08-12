@@ -4,4 +4,10 @@
   body {
     font-size: $desktop-font-size;
   }
+
+  .container {
+    width: 960px;
+    margin: 0 auto;
+    padding: 0 $base-padding
+  }
 }

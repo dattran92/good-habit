@@ -1,18 +1,24 @@
 <template>
   <div id="app">
     <header>
-      <img id="logo" src="./assets/logo.png">
-  		<nav id="mainNav">
-  			<ul>
-  				<router-link activeClass="active" to="/home">Home</router-link>
-          <router-link activeClass="active" to="/objective">Objective</router-link>
-          <router-link activeClass="active" to="/chart">Chart</router-link>
-  			</ul>
-  		</nav>
+      <div class="container">
+        <img id="logo" src="./assets/logo.png">
+    		<nav id="mainNav">
+    			<ul>
+    				<router-link activeClass="active" to="/home">Home</router-link>
+            <router-link activeClass="active" to="/objective">Objective</router-link>
+            <router-link activeClass="active" to="/chart">Chart</router-link>
+    			</ul>
+    		</nav>
+      </div>
   	</header>
-    <router-view></router-view>
+    <div class="container">
+      <router-view></router-view>
+    </div>
     <footer>
-  		<p>Copyright 2017 - Dat Tran</p>
+      <div class="container">
+    		<p>Copyright 2017 - Dat Tran</p>
+      </div>
   	</footer>
   </div>
 </template>

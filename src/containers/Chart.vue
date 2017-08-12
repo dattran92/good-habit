@@ -144,11 +144,6 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 
-.chart {
-  width: 900px;
-  margin: 0 auto;
-}
-
 #filterBox {
   li {
     display: inline-block;
