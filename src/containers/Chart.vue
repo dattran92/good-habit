@@ -92,7 +92,7 @@ function getActivityData(objectiveId, thisMonth, labels) {
 
   // in minute
   return labels.map((label) => {
-    return usedTime[label] ? usedTime[label] / 60 : 0;
+    return usedTime[label] ? Math.round(usedTime[label] / 60, 0) : 0;
   });
 }
 

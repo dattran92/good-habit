@@ -4,24 +4,31 @@
       <h1>Log Your Activity</h1>
     </header>
     <section>
-      <button
-        class="primary"
-        v-on:click="openCheckin"
-        v-if="currentActivity == null">
-        Check In
-      </button>
       <div
-        v-if="currentActivity != null">
-        <span>You have started </span>
-        <b>{{ objectives[currentActivity.objectiveId] }}</b>
-        <span> since </span>
-        <b>{{ new Date(currentActivity.startTime) | displayTime }}</b>
+        v-if="!hasObjective">
+        You have not created any objective yet. <br />
+        <router-link class="btn primary" to="/objective">Create Objective</router-link>
       </div>
-      <button
-        v-on:click="checkout"
-        v-if="currentActivity != null">
-        Check Out
-      </button>
+      <div v-if="hasObjective">
+        <button
+          class="primary"
+          v-on:click="openCheckin"
+          v-if="currentActivity == null">
+          Check In
+        </button>
+        <div
+          v-if="currentActivity != null">
+          <span>You have started </span>
+          <b>{{ objectives[currentActivity.objectiveId] }}</b>
+          <span> since </span>
+          <b>{{ new Date(currentActivity.startTime) | displayTime }}</b>
+        </div>
+        <button
+          v-on:click="checkout"
+          v-if="currentActivity != null">
+          Check Out
+        </button>
+      </div>
     </section>
     <custom-popup
       v-if="checkinActive"
@@ -65,9 +72,11 @@ export default {
   },
   name: 'Home',
   data() {
+    const objectives = storage.objective.fetch();
     return {
       checkinActive: false,
-      objectives: storage.objective.fetch(),
+      hasObjective: objectives !== null && Object.keys(objectives).length > 0,
+      objectives,
       selectedObjective: '',
       currentActivity: storage.activity.getCurrentActivity(),
     };
