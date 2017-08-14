@@ -66,9 +66,10 @@ export default {
       font-weight: bold;
       text-decoration: none;
       color: #333;
+      cursor: pointer;
 
       &:hover {
-        color: #06D85F;
+        color: $primary-color;
       }
     }
 

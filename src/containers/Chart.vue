@@ -8,6 +8,7 @@
         <input
           type="checkbox"
           :value="index"
+          :id="index"
           v-model="currentObjectives"
           v-on:click="updateChart" />
         <label :for="index">

@@ -1,12 +1,16 @@
 <template>
   <section class="activity">
     <header>
-      <h1>Log Your Activity</h1>
+      <h1 class="main-header">Log Your Activity</h1>
     </header>
-    <section>
+    <section class="main-content">
       <div
         v-if="!hasObjective">
-        You have not created any objective yet. <br />
+        <div>
+          <span class="alert">
+            You have not created any objective yet.
+          </span>
+        </div>
         <router-link class="btn primary" to="/objective">Create Objective</router-link>
       </div>
       <div v-if="hasObjective">
@@ -111,4 +115,14 @@ export default {
 };
 </script>
 
-<style scoped></style>
+<style lang="scss" scoped>
+@import "../assets/styles/variables.scss";
+
+.main-content {
+  text-align: center;
+}
+
+.alert {
+  margin-bottom: $base-margin;
+}
+</style>

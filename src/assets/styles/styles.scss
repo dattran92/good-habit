@@ -21,10 +21,10 @@ strong, b {
 button, a.btn {
   display: inline-block;
   text-decoration: none;
-  border-radius: 5px;
+  border-radius: $radius;
   border: 1px solid $grey-color;
   background: $grey-color;
-  font-size: 14px;
+  font-size: $large-font-size;
   padding: 8px 16px;
   color: $white-color;
   cursor: pointer;
@@ -32,5 +32,29 @@ button, a.btn {
   &.primary {
     background: $primary-color;
     border-color: $primary-color;
+  }
+}
+
+.main-header {
+  font-size: $large-font-size;
+  display: block;
+  box-sizing: border-box;
+  width: 100%;
+  padding: $base-padding;
+  background: $light-color;
+  font-weight: 500;
+}
+
+.main-content {
+  padding: $base-padding;
+}
+
+.alert {
+  display: inline-block;
+  padding: $base-padding;
+  border-radius: $radius;
+
+  &.info {
+    background: $info-background-color;
   }
 }
