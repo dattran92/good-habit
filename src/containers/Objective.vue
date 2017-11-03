@@ -1,7 +1,9 @@
 <template>
   <section class="objective">
-    <header class="header">
-      <h1>Objective</h1>
+    <header>
+      <h1 class="main-header">Objective</h1>
+    </header>
+    <section class="main-content">
       <input
         class="new-objective"
         autofocus
@@ -9,16 +11,16 @@
         placeholder="What's your objective"
         v-model="newObjective"
         @keyup.enter="addNew"/>
-    </header>
-    <section class="main">
-      <ul class="objective-list">
-        <li v-for="(objective, index) in objectives"
-          class="objective"
-          :key="index">
-          <span>{{ objective }}</span>
-          <a v-on:click="confirmRemove(index)">&times;</a>
-        </li>
-      </ul>
+      <section class="main">
+        <ul class="objective-list">
+          <li v-for="(objective, index) in objectives"
+            class="objective"
+            :key="index">
+            <span>{{ objective }}</span>
+            <a v-on:click="confirmRemove(index)">&times;</a>
+          </li>
+        </ul>
+      </section>
     </section>
     <confirm
       v-if="showConfirmRemove"

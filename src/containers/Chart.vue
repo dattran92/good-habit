@@ -1,29 +1,34 @@
 <template>
   <section class="chart">
-    <ul id="filterBox">
-      <li
-        v-for="objective, index in objectives"
-        :key="index"
-      >
-        <input
-          type="checkbox"
-          :value="index"
-          :id="index"
-          v-model="currentObjectives"
-          v-on:click="updateChart" />
-        <label :for="index">
-          {{ objective }}
-        </label>
-      </li>
-    </ul>
-    <line-chart
-      :width="2"
-      :height="1"
-      :chart-data="dataCollection">
-    </line-chart>
-    <div class="chartName">
-      Time spent on {{ today | displayMonth }} (min/day)
-    </div>
+    <header>
+      <h1 class="main-header">Chart</h1>
+    </header>
+    <section class="main-content">
+      <ul id="filterBox">
+        <li
+          v-for="objective, index in objectives"
+          :key="index"
+        >
+          <input
+            type="checkbox"
+            :value="index"
+            :id="index"
+            v-model="currentObjectives"
+            v-on:click="updateChart" />
+          <label :for="index">
+            {{ objective }}
+          </label>
+        </li>
+      </ul>
+      <line-chart
+        :width="2"
+        :height="1"
+        :chart-data="dataCollection">
+      </line-chart>
+      <div class="chartName">
+        Time spent on {{ today | displayMonth }} (min/day)
+      </div>
+    </section>
   </section>
 </template>
 

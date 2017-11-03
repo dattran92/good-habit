@@ -17,7 +17,9 @@
     </div>
     <footer>
       <div class="container">
-    		<p>Copyright 2017 - Dat Tran</p>
+        <div class="wrapper">
+      		<p>Copyright 2017 - Dat Tran</p>
+        </div>
       </div>
   	</footer>
   </div>

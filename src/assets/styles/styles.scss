@@ -36,16 +36,20 @@ button, a.btn {
 }
 
 .main-header {
-  font-size: $large-font-size;
+  font-size: $heading-font-size;
   display: block;
   box-sizing: border-box;
   width: 100%;
   padding: $base-padding;
-  background: $light-color;
   font-weight: 500;
+  margin: $base-margin 0;
 }
 
 .main-content {
+  padding: $base-padding;
+}
+
+.wrapper {
   padding: $base-padding;
 }
 
