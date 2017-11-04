@@ -1,8 +1,15 @@
 # good-habit
 
-> An SPA application written in VueJS
+> An SPA application written in VueJS which service worker to support working offline
 
-Tracking Your activity for good habits
+Tracking Your activity for good habits with 4 simple steps:
+
+1. Add objective (gym, reading books, walking)
+2. Everytime you begin doing something, `check in`
+3. After finishing it, `check out`
+4. Review your activities in `chart`
+
+Demo Page: [http://goodhabit.fullstuck.com](http://goodhabit.fullstuck.com)
 
 ## Build Setup
 
