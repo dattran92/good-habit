@@ -9,8 +9,9 @@ var CopyWebpackPlugin = require('copy-webpack-plugin')
 var HtmlWebpackPlugin = require('html-webpack-plugin')
 var ExtractTextPlugin = require('extract-text-webpack-plugin')
 var OptimizeCSSPlugin = require('optimize-css-assets-webpack-plugin')
-const SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
-const loadMinified = require('./load-minified')
+var PrerenderSpaPlugin = require('prerender-spa-plugin')
+var SWPrecacheWebpackPlugin = require('sw-precache-webpack-plugin')
+var loadMinified = require('./load-minified')
 
 var env = config.build.env
 
@@ -103,7 +104,13 @@ var webpackConfig = merge(baseWebpackConfig, {
       staticFileGlobs: ['dist/**/*.{js,html,css}'],
       minify: true,
       stripPrefix: 'dist/'
-    })
+    }),
+    new PrerenderSpaPlugin(
+      // Absolute path to compiled SPA
+      path.join(__dirname, '../dist'),
+      // List of routes to prerender
+      [ '/', '/home', '/objective', '/chart' ]
+    )
   ]
 })
 
