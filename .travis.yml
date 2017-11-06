@@ -3,7 +3,7 @@ node_js:
   - "8"
 script:
   - npm run build
-deploy:
+after_success:
   - travis-scripts/deploy-to-github-pages
 cache:
   directories:
