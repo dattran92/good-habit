@@ -1,4 +1,6 @@
-# good-habit
+[![Build Status](https://travis-ci.org/dattran92/good-habit.svg?branch=master)](https://travis-ci.org/dattran92/good-habit)
+
+# good-habit 
 
 > An SPA application written in VueJS which service worker to support working offline
 
