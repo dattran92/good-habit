@@ -14,7 +14,7 @@
             :value="index"
             :id="index"
             v-model="currentObjectives"
-            v-on:click="updateChart" />
+            v-on:change="updateChart" />
           <label :for="index">
             {{ objective }}
           </label>
