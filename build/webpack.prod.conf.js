@@ -98,19 +98,19 @@ var webpackConfig = merge(baseWebpackConfig, {
         ignore: ['.*']
       }
     ]),
-    new SWPrecacheWebpackPlugin({
-      cacheId: 'my-vue-app',
-      filename: 'service-worker.js',
-      staticFileGlobs: ['dist/**/*.{js,html,css}'],
-      minify: true,
-      stripPrefix: 'dist/'
-    }),
     new PrerenderSpaPlugin(
       // Absolute path to compiled SPA
       path.join(__dirname, '../dist'),
       // List of routes to prerender
       [ '/', '/home', '/objective', '/chart' ]
-    )
+    ),
+    new SWPrecacheWebpackPlugin({
+      cacheId: 'good-habit',
+      filename: 'service-worker.js',
+      staticFileGlobs: ['dist/**/*.{js,html,css}'],
+      minify: true,
+      stripPrefix: 'dist/'
+    }),
   ]
 })
 
