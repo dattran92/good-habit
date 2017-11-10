@@ -5,9 +5,9 @@
         <img id="logo" src="./assets/logo.png">
     		<nav id="main-nav">
     			<ul>
-    				<router-link activeClass="active" to="/home">Check In</router-link>
-            <router-link activeClass="active" to="/objective">Objective</router-link>
-            <router-link activeClass="active" to="/chart">Chart</router-link>
+    				<router-link activeClass="active" to="/home/">Check In</router-link>
+            <router-link activeClass="active" to="/objective/">Objective</router-link>
+            <router-link activeClass="active" to="/chart/">Chart</router-link>
     			</ul>
     		</nav>
       </div>
