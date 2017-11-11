@@ -55,7 +55,7 @@
               <b>CHECKIN</b> every time you begin the objective.
             </li>
             <li>
-              <b><router-link to="/objective/">REVIEW</router-link></b> your activity logs last month.
+              <b><router-link to="/chart/">REVIEW</router-link></b> your activity logs last month.
             </li>
           </ul>
         </div>
