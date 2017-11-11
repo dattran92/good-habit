@@ -18,7 +18,8 @@
     <footer>
       <div class="container">
         <div class="wrapper">
-      		<p>Copyright 2017 - Dat Tran</p>
+          <p><b>GOOD HABIT</b></p>
+      		<p>Copyright &#169; 2017 - Dat Tran</p>
         </div>
       </div>
   	</footer>
@@ -60,6 +61,11 @@ export default {
     height: 30px
   }
 
-  #main-content {
+  footer {
+    border-top: 1px solid $light-grey-color;
+    .wrapper {
+      display: flex;
+      justify-content: space-between;
+    }
   }
 </style>

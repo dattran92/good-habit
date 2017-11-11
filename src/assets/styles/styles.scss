@@ -12,10 +12,16 @@ strong, b {
   font-weight: bold;
 }
 
-.box {
-  display: flex;
-  margin: $base-margin;
+input, select {
+  border: 1px solid $grey-color;
   padding: $base-padding;
+  box-sizing: border-box;
+  border-radius: $radius;
+  width: 100%;
+}
+
+a {
+  color: $primary-color;
 }
 
 button, a.btn {
@@ -35,6 +41,12 @@ button, a.btn {
   }
 }
 
+.box {
+  display: flex;
+  margin: $base-margin;
+  padding: $base-padding;
+}
+
 .main-header {
   font-size: $heading-font-size;
   display: block;
@@ -43,6 +55,15 @@ button, a.btn {
   padding: $base-padding;
   font-weight: 500;
   margin: $base-margin 0;
+}
+
+h2.header {
+  display: block;
+  padding-bottom: $base-padding / 2;
+  margin-bottom: $base-margin;
+  border-bottom: 1px solid $grey-color;
+  font-weight: bold;
+  font-size: $super-large-font-size;
 }
 
 .main-content {
@@ -61,12 +82,4 @@ button, a.btn {
   &.info {
     background: $info-background-color;
   }
-}
-
-input, select {
-  border: 1px solid $grey-color;
-  padding: $base-padding;
-  box-sizing: border-box;
-  border-radius: $radius;
-  width: 100%;
 }

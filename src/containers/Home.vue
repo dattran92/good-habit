@@ -36,6 +36,30 @@
           Check Out
         </button>
       </div>
+      <div class="introduction">
+        <h2 class="header">GOOD HABIT</h2>
+        <div class="content">
+          <b>As usual,</b> we have a lot of activities (reading, gymnastic, football, studying guitar, ...) in mind to make our life better.
+          However, the more <b>objectives</b> you put, the <b>lazier</b> you are.<br /><br />
+
+          So, Why not to write it down and have a plan to establish <b>Good Habit</b>?<br />
+        </div>
+        <h2 class="header">HOW?</h2>
+        <div class="content">
+          Basically, we have 3 actions:
+          <ul class="guideline">
+            <li>
+              Create new <b><router-link to="/objective/">OBJECTIVE</router-link></b>.
+            </li>
+            <li>
+              <b>CHECKIN</b> every time you begin the objective.
+            </li>
+            <li>
+              <b><router-link to="/objective/">REVIEW</router-link></b> your activity logs last month.
+            </li>
+          </ul>
+        </div>
+      </div>
     </section>
     <custom-popup
       v-if="checkinActive"
@@ -122,6 +146,23 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
+
+.introduction {
+  text-align: left;
+  margin-top: $base-margin * 2;
+  .content {
+    margin-bottom: $base-margin;
+  }
+}
+
+ul.guideline {
+  margin-top: $base-margin;
+  li {
+    list-style-type: disc;
+    list-style-position: inside;
+    margin-bottom: $base-margin;
+  }
+}
 
 .time-lapsed {
   font-size: $heading-font-size;
