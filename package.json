@@ -13,6 +13,7 @@
   "dependencies": {
     "chart.js": "^2.6.0",
     "lodash": "^4.17.4",
+    "moment": "^2.19.1",
     "vue": "^2.3.3",
     "vue-chartjs": "^2.8.1",
     "vue-logger": "0.0.2",

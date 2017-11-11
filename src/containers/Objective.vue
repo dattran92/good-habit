@@ -16,8 +16,8 @@
           <li v-for="(objective, index) in objectives"
             class="objective"
             :key="index">
-            <span>{{ objective }}</span>
-            <a v-on:click="confirmRemove(index)">&times;</a>
+            <span class="name">{{ objective }}</span>
+            <a class="close" v-on:click="confirmRemove(index)">&times;</a>
           </li>
         </ul>
       </section>
@@ -81,4 +81,26 @@ export default {
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped></style>
+<style lang="scss" scoped>
+  @import "../assets/styles/variables.scss";
+
+  .new-objective {
+    margin-bottom: $base-margin;
+  }
+
+  .objective-list {
+    margin: $base-margin 0;
+    li.objective {
+      padding: $base-padding 0;
+      display: flex;
+      justify-content: space-between;
+      border-bottom: 1px solid $light-grey-color;
+
+      .close {
+        cursor: pointer;
+        font-size: $large-font-size;
+        font-weight: bold;
+      }
+    }
+  }
+</style>

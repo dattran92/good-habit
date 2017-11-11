@@ -27,6 +27,9 @@
           <span> since </span>
           <b>{{ new Date(currentActivity.startTime) | displayTime }}</b>
         </div>
+        <div class="time-lapsed" v-if="currentActivity != null">
+          <time-lapse v-bind:start-time="currentActivity.startTime" />
+        </div>
         <button
           v-on:click="checkout"
           v-if="currentActivity != null">
@@ -69,10 +72,12 @@
 <script>
 import storage from '@/helpers/storage';
 import CustomPopup from '@/components/CustomPopup';
+import TimeLapse from '@/components/TimeLapse';
 
 export default {
   components: {
     CustomPopup,
+    TimeLapse,
   },
   name: 'Home',
   data() {
@@ -117,6 +122,12 @@ export default {
 
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
+
+.time-lapsed {
+  font-size: $heading-font-size;
+  margin: $base-margin;
+  font-weight: bold;
+}
 
 .main-content {
   text-align: center;

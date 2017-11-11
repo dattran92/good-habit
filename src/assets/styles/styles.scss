@@ -62,3 +62,11 @@ button, a.btn {
     background: $info-background-color;
   }
 }
+
+input, select {
+  border: 1px solid $grey-color;
+  padding: $base-padding;
+  box-sizing: border-box;
+  border-radius: $radius;
+  width: 100%;
+}

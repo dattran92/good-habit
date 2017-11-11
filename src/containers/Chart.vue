@@ -4,7 +4,7 @@
       <h1 class="main-header">Chart</h1>
     </header>
     <section class="main-content">
-      <ul id="filterBox">
+      <ul class="filter-box">
         <li
           v-for="objective, index in objectives"
           :key="index"
@@ -150,10 +150,12 @@ export default {
 <style lang="scss" scoped>
 @import "../assets/styles/variables.scss";
 
-#filterBox {
+.filter-box {
+  margin-bottom: $base-margin;
   li {
     display: inline-block;
     margin-right: $base-margin;
+    margin-bottom: $base-margin / 2; 
   }
 }
 
