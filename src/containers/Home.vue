@@ -11,7 +11,7 @@
             You have not created any objective yet.
           </span>
         </div>
-        <router-link class="btn primary" to="/objective/">Create Objective</router-link>
+        <router-link class="btn primary" to="/objective/">CREATE OBJECTIVE</router-link>
       </div>
       <div v-if="hasObjective">
         <button
