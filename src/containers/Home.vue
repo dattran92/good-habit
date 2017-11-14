@@ -31,7 +31,7 @@
           <time-lapse v-bind:start-time="currentActivity.startTime" />
         </div>
         <button
-          v-on:click="checkout"
+          v-on:click="openCheckout"
           v-if="currentActivity != null">
           Check Out
         </button>
@@ -75,6 +75,11 @@
             {{ objective }}
           </option>
         </select>
+        <input
+          type="text"
+          class="time-input"
+          v-model:value="checkinTime"
+          placeholder="YYYY-MM-DD HH:mm:ss" />
       </section>
       <footer>
         <button
@@ -90,13 +95,46 @@
         </button>
       </footer>
     </custom-popup>
+    <custom-popup
+      v-if="checkoutActive"
+      @close="closeCheckout"
+      title="Check out your activity">
+      <section>
+        <p>
+          <span>You have started </span>
+          <b>{{ objectives[currentActivity.objectiveId] }}</b>
+          <span> since </span>
+          <b>{{ new Date(currentActivity.startTime) | displayTime }}</b>
+        </p>
+        <input
+          type="text"
+          class="time-input"
+          v-model:value="checkoutTime"
+          placeholder="YYYY-MM-DD HH:mm:ss" />
+      </section>
+      <footer>
+        <button
+          class="primary"
+          v-on:click="checkout">
+          Check Out
+        </button>
+        <button
+          v-on:click="closeCheckout"
+          >
+          Cancel
+        </button>
+      </footer>
+    </custom-popup>
   </section>
 </template>
 
 <script>
+import moment from 'moment';
 import storage from '@/helpers/storage';
 import CustomPopup from '@/components/CustomPopup';
 import TimeLapse from '@/components/TimeLapse';
+
+const TIME_FORMAT = 'YYYY-MM-DD HH:mm:ss';
 
 export default {
   components: {
@@ -108,32 +146,43 @@ export default {
     const objectives = storage.objective.fetch();
     return {
       checkinActive: false,
+      checkoutActive: false,
       hasObjective: objectives !== null && Object.keys(objectives).length > 0,
       objectives,
       selectedObjective: '',
       currentActivity: storage.activity.getCurrentActivity(),
+      checkinTime: null,
     };
   },
   methods: {
     openCheckin() {
       this.checkinActive = true;
+      this.checkinTime = moment().format(TIME_FORMAT);
     },
     closeCheckin() {
       this.checkinActive = false;
     },
     checkin() {
-      const startTime = new Date().getTime();
+      const startTime = moment(this.checkinTime, TIME_FORMAT).valueOf();
       const objectiveId = this.selectedObjective;
       if (!objectiveId) return;
       storage.activity.checkin(objectiveId, {}, startTime);
       this.currentActivity = storage.activity.getCurrentActivity();
       this.checkinActive = false;
     },
+    openCheckout() {
+      this.checkoutActive = true;
+      this.checkoutTime = moment().format(TIME_FORMAT);
+    },
+    closeCheckout() {
+      this.checkoutActive = false;
+    },
     checkout() {
       if (!this.currentActivity) return;
-      const endTime = new Date().getTime();
+      const endTime = moment(this.checkoutTime, TIME_FORMAT).valueOf();
       storage.activity.checkout(endTime);
       this.currentActivity = storage.activity.getCurrentActivity();
+      this.checkoutActive = false;
     },
   },
   filters: {
@@ -176,5 +225,9 @@ ul.guideline {
 
 .alert {
   margin-bottom: $base-margin;
+}
+
+.time-input {
+  margin-top: $base-margin;
 }
 </style>
