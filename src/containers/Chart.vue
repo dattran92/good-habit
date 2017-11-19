@@ -4,29 +4,40 @@
       <h1 class="main-header">Chart</h1>
     </header>
     <section class="main-content">
-      <ul class="filter-box">
-        <li
-          v-for="objective, index in objectives"
-          :key="index"
-        >
-          <input
-            type="checkbox"
-            :value="index"
-            :id="index"
-            v-model="currentObjectives"
-            v-on:change="updateChart" />
-          <label :for="index">
-            {{ objective }}
-          </label>
-        </li>
-      </ul>
+      <select
+        class="object-selection"
+        v-model="currentObjective">
+        <option value="">Select Objective</option>
+        <option
+          v-for="(objective, index) in objectives"
+          v-bind:value="index">
+          {{ objective }}
+        </option>
+      </select>
       <line-chart
-        :width="2"
-        :height="1"
+        :width="3"
+        :height="2"
         :chart-data="dataCollection">
       </line-chart>
-      <div class="chartName">
+      <div class="chart-name">
         Time spent on {{ today | displayMonth }} (min/day)
+      </div>
+      <div class="history-box">
+        <div class="box-title">
+          History
+        </div>
+        <ul>
+          <li
+            v-for="(history, index) in activityHistory"
+          >
+            <div>
+              {{ history.startTime | displayTime }}
+            </div>
+            <div class="used-time">
+              <b>{{ history | getUsedTime }}</b> min
+            </div>
+          </li>
+        </ul>
       </div>
     </section>
   </section>
@@ -35,29 +46,12 @@
 <script>
 import Vue from 'vue';
 import _ from 'lodash';
+import moment from 'moment';
+
 import storage from '@/helpers/storage';
 import LineChart from '@/components/LineChart';
 
-const colorList = [
-  '#F44336',
-  '#E91E63',
-  '#9C27B0',
-  '#673AB7',
-  '#3F51B5',
-  '#2196F3',
-  '#03A9F4',
-  '#00BCD4',
-  '#009688',
-  '#4CAF50',
-  '#8BC34A',
-  '#CDDC39',
-  '#FFEB3B',
-  '#FFC107',
-  '#FF9800',
-  '#FF5722',
-  '#795548',
-  '#9E9E9E',
-];
+const TIME_FORMAT = 'MMM DD - HH:mm';
 
 function getLabels() {
   const labels = [];
@@ -68,8 +62,17 @@ function getLabels() {
   return labels;
 }
 
-function getColor(position) {
-  return colorList[position];
+function getActivityHistory(objectiveId, thisMonth) {
+  const activities = storage.activity.getActivities(objectiveId);
+  const thisMonthActivities = activities.filter((activity) => {
+    const startTime = new Date(activity.startTime);
+    return startTime.getMonth() + 1 === thisMonth;
+  });
+
+  return thisMonthActivities.map(activity => ({
+    ...activity,
+    test: true,
+  }));
 }
 
 function getActivityData(objectiveId, thisMonth, labels) {
@@ -110,38 +113,53 @@ export default {
     return {
       today: new Date(),
       objectives: storage.objective.fetch(),
-      currentObjectives: [],
-      dataCollection: {},
+      currentObjective: '',
     };
   },
-  methods: {
-    updateChart() {
+  computed: {
+    dataCollection() {
       const thisMonth = this.today.getMonth() + 1;
       const labels = getLabels();
       const objectives = this.objectives;
-      const currentObjectives = this.currentObjectives;
+      const currentObjective = this.currentObjective;
       let datasets = [];
-      Vue.console.debug('currentObjectives', currentObjectives);
+      Vue.console.debug('currentObjective', currentObjective);
 
-      if (currentObjectives && currentObjectives.length > 0) {
-        datasets = currentObjectives.map((objectiveId, index) => {
-          return {
-            label: objectives[objectiveId],
-            backgroundColor: getColor(index),
-            data: getActivityData(objectiveId, thisMonth, labels),
-          };
-        });
+      if (currentObjective) {
+        datasets = [
+          {
+            label: objectives[currentObjective],
+            backgroundColor: '#F44336',
+            data: getActivityData(currentObjective, thisMonth, labels),
+          },
+        ];
       }
-
-      this.dataCollection = {
+      return {
         labels,
         datasets,
       };
+    },
+    activityHistory() {
+      const thisMonth = this.today.getMonth() + 1;
+      const currentObjective = this.currentObjective;
+      Vue.console.debug('test currentObjective', currentObjective);
+      if (!currentObjective) {
+        return [];
+      }
+
+      return getActivityHistory(currentObjective, thisMonth);
     },
   },
   filters: {
     displayMonth(date) {
       return date.toLocaleString('en-us', { month: 'long' });
+    },
+    displayTime(timestamp) {
+      return moment(timestamp).format(TIME_FORMAT);
+    },
+    getUsedTime(history) {
+      const minutes = (history.endTime - history.startTime) / 1000 / 60;
+      return Math.round(minutes, 0);
     },
   },
 };
@@ -155,12 +173,38 @@ export default {
   li {
     display: inline-block;
     margin-right: $base-margin;
-    margin-bottom: $base-margin / 2; 
+    margin-bottom: $base-margin / 2;
   }
 }
 
-.chartName {
+.chart-name {
   width: 100%;
   text-align: center;
+}
+
+.object-selection {
+  margin-bottom: $base-margin;
+}
+
+.history-box {
+  margin: $base-margin 0;
+  .box-title {
+    padding: $base-padding;
+    background: $light-grey-color;
+    text-align: center;
+    font-weight: bold;
+  }
+  ul {
+    li {
+      display: flex;
+      padding: $base-padding;
+      border-bottom: 1px solid $light-grey-color;
+      margin-bottom: $base-margin / 2;
+
+      &> div {
+        flex: 1;
+      }
+    }
+  }
 }
 </style>
